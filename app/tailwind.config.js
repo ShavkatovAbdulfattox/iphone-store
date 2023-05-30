@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./src/**/*.{html,js}"],
   theme: {
+    container: {
+      center: true,
+    },
     extend: {
       width: {
         150: "150px",
