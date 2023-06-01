@@ -1,10 +1,11 @@
 import { fetchUser } from "../utils/fetchLocalStorageData";
 
 const userInfo = fetchUser();
-console.log(userInfo);
 
-const logged =  localStorage.getItem("isLogged")!== undefined ?JSON.parse(localStorage.getItem("isLogged")) : localStorage.clear() ;
-console.log(logged);
+const logged =
+  localStorage.getItem("isLogged") !== undefined
+    ? JSON.parse(localStorage.getItem("isLogged"))
+    : localStorage.clear();
 
 export const InitialState = {
   user: userInfo,

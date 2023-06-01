@@ -5,12 +5,11 @@ import { FiChevronDown } from "react-icons/fi";
 import { selectItems } from "../../utils/data";
 function Select() {
   const [selectedDevice, setSelectedDevice] = useState("");
-  console.log(selectedDevice);
   return (
     <Wrapper>
       <SelectPreview className="flex items-cente gap-2" htmlFor="select">
         <BsPhone className="text-xl" />
-        {selectedDevice == "" ? "Выбрать модель телефона" : selectedDevice}
+        {selectedDevice === "" ? "Выбрать модель телефона" : selectedDevice}
         <FiChevronDown className="text-xl" />
       </SelectPreview>
       <SelectOriginal onChange={(e) => setSelectedDevice(e.target.value)}>
