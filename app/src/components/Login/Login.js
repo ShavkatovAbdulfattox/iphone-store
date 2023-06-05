@@ -3,13 +3,15 @@ import { FcGoogle } from "react-icons/fc";
 import { GrClose } from "react-icons/gr";
 import { styled } from "styled-components";
 import { motion } from "framer-motion";
-import { signInWithPopup } from "firebase/auth";
+import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
 import { auth, db, googleProvider } from "../../config/firebase.config";
 import { useStateValue } from "../../context/stateProvider";
 import { actionType } from "../../context/reducer";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { setUserInformationToLocalStorage } from "../../utils/helper";
 import SignUpModal from "../SignUp/SignUp";
+import { loginInToAcc } from "../../utils/firebaseSignIn";
+import Swal from "sweetalert2";
 
 function Login({ isLogin, setIsLogin, isSign, setIsSign }) {
   const [{ user }, dispatch] = useStateValue();
@@ -72,6 +74,41 @@ function Login({ isLogin, setIsLogin, isSign, setIsSign }) {
     return isUserExisting;
   }
 
+  console.log(auth?.currentUser?.email);
+  const logInAcc = (e) => {
+    e.preventDefault();
+    if (!email && !password) {
+      Swal.fire({
+        icon: "error",
+        title: "Регистрация",
+        text: "Пожалуйста заполните!",
+      });
+      return;
+    }
+    try {
+      // Listen for authentication state changes
+      loginInToAcc(email, password).then((email) => {
+        dispatch({
+          type: actionType.SET_USER,
+          user: [
+            email,
+            { displayName: email.substring(0, email.indexOf("@")) },
+          ],
+        });
+        dispatch({ type: actionType.SET_ISUSERLOGGED, isUserLogged: true });
+
+        //  TODO: Setting user to the localStorage
+
+        setUserInformationToLocalStorage([
+          email,
+          { displayName: email.substring(0, email.indexOf("@")) },
+        ]);
+      });
+    } catch (error) {
+      alert({ error });
+    }
+  };
+
   return (
     <>
       {isLogin && (
@@ -124,7 +161,10 @@ function Login({ isLogin, setIsLogin, isSign, setIsSign }) {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                 />
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
+                <button
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10"
+                  onClick={logInAcc}
+                >
                   Войти
                 </button>
                 <button

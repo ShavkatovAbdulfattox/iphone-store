@@ -6,16 +6,17 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../config/firebase.config";
 import { useStateValue } from "../../context/stateProvider";
 import { actionType } from "../../context/reducer";
-import { signUpWithGooglePopup } from "../../utils/firebaseFunctions";
+// import { signUpWithGooglePopup } from "../../utils/firebaseSingUp";
 import { setUserInformationToLocalStorage } from "../../utils/helper";
 import { signUpWithEmail } from "../../utils/firebaseSingUp";
+import { signUpWithGooglePopup } from "../../utils/firebaseSignIn";
 
 function SignUpModal({ setIsLogin, setIsSign }) {
   const [{ user }, dispatch] = useStateValue();
   const [emailUp, setEmailUp] = useState("");
   const [passwordUp, setPasswordUp] = useState("");
   const [nameUp, setNameUp] = useState("");
-  const [res,setRes] = useState(false)
+  // const [res,setRes] = useState(false)
 
   // ! USER COLLECTIONFROMDB
   const signUpWithGoogle = () => {
@@ -40,7 +41,6 @@ function SignUpModal({ setIsLogin, setIsSign }) {
       }
     });
   };
-  console.log(auth?.currentUser?.email);
   const signUpWithEmailAndPassword = async (e) => {
     try {
       signUpWithEmail(emailUp, passwordUp, nameUp);
@@ -58,7 +58,7 @@ function SignUpModal({ setIsLogin, setIsSign }) {
       //  TODO: Setting user to the localStorage
 
       setUserInformationToLocalStorage(userInfo);
-      setRes(true)
+      // setRes(true)
       setEmailUp("");
       setPasswordUp("");
       setNameUp("");
