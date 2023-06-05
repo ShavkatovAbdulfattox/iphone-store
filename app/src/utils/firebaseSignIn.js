@@ -42,6 +42,7 @@ export function signUpWithGooglePopup() {
           displayName: displayName,
           email: email,
           photoUrl: photoURL,
+          googleAuth:true
           // Add any additional user data as needed
         };
         // Save the user data to Firestore

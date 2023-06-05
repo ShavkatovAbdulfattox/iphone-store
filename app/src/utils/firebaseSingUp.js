@@ -51,22 +51,25 @@ export async function signUpWithEmail(email, password, nameUp) {
       uid: user.uid,
       email: user.email,
       nameUp,
-      // Add any additional user data as needed
+      password,
+      googleAuth: false,
     };
 
     const userDocRef = doc(db, "users", user.uid);
     await setDoc(userDocRef, newUser);
-    Swal.fire({
-      icon: "success",
-      title: "Регистрация",
-      text: "Успешно прошли !",
-    });
+
+    Swal.fire(
+      'Problem?',
+      'Нажмите в кнопку регистрация снова ?',
+      'question'
+    )
+
   } catch (error) {
     console.log("Error signing up:", error);
     Swal.fire({
       icon: "error",
       title: "Регистрация",
-      text: "Ошика при Регистрации !",
+      text: "Ошика при Регистрации, обновите страницу и повторите!",
     });
   }
 }

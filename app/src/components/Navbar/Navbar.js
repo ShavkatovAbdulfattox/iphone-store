@@ -16,7 +16,6 @@ function Navbar() {
   const [isSign, setIsSign] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
 
-
   const logOut = async () => {
     try {
       await signOut(auth);
@@ -33,6 +32,10 @@ function Navbar() {
       console.log({ error });
     }
   };
+
+  const userPhoto = user?.photoURL
+    ? user?.photoURL
+    : "https://cdn.onlinewebfonts.com/svg/img_258083.png";
 
   return (
     <>
@@ -100,7 +103,7 @@ function Navbar() {
               <>
                 <div className="flex items-center gap-3">
                   <img
-                    src={user?.photoURL}
+                    src={userPhoto}
                     alt="user-profile"
                     className="w-9 h-9 rounded-full cursor-pointer"
                   />

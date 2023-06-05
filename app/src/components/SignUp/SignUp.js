@@ -15,6 +15,7 @@ function SignUpModal({ setIsLogin, setIsSign }) {
   const [emailUp, setEmailUp] = useState("");
   const [passwordUp, setPasswordUp] = useState("");
   const [nameUp, setNameUp] = useState("");
+  const [res,setRes] = useState(false)
 
   // ! USER COLLECTIONFROMDB
   const signUpWithGoogle = () => {
@@ -43,8 +44,21 @@ function SignUpModal({ setIsLogin, setIsSign }) {
   const signUpWithEmailAndPassword = async (e) => {
     try {
       signUpWithEmail(emailUp, passwordUp, nameUp);
-      const {email} = auth?.currentUser;
-      // dispatch({})
+
+      const { displayName, email, uid } = auth?.currentUser;
+      const userInfo = [{ uid, displayName, email }];
+      // console.log(auth?.currentUser);
+
+      dispatch({
+        type: actionType.SET_USER,
+        user: userInfo,
+      });
+      dispatch({ type: actionType.SET_ISUSERLOGGED, isUserLogged: true });
+
+      //  TODO: Setting user to the localStorage
+
+      setUserInformationToLocalStorage(userInfo);
+      setRes(true)
       setEmailUp("");
       setPasswordUp("");
       setNameUp("");
