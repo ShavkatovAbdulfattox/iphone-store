@@ -38,7 +38,7 @@ function Navbar() {
     : "https://cdn.onlinewebfonts.com/svg/img_258083.png";
 
   return (
-    <>
+    <div className="container">
       <motion.nav
         className="flex items-end justify-between"
         initial={{ opacity: 0, y: 200 }}
@@ -136,7 +136,7 @@ function Navbar() {
           setIsSign={setIsSign}
         />
       )}
-    </>
+    </div>
   );
 }
 

@@ -1,7 +1,9 @@
 import React from 'react';
 
 function Main() {
-  return <div></div>;
+  return <main className='flex-auto'>
+    Main
+  </main>;
 }
 
 export default Main;
