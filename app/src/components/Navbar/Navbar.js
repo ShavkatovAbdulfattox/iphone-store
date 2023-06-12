@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsPersonCircle } from "react-icons/bs";
 import { BiLogOut } from "react-icons/bi";
-
 import { motion } from "framer-motion";
-import Select from "../Select/Select";
-import Login from "../Login/Login";
 import { useStateValue } from "../../context/stateProvider";
 import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase.config";
 import { actionType } from "../../context/reducer";
+import { Outlet, Link } from "react-router-dom";
 
+import Select from "../Select/Select";
+import Login from "../Login/Login";
 function Navbar() {
   const [{ isUserLogged, user }, dispatch] = useStateValue();
   const [isSign, setIsSign] = useState(false);
@@ -47,25 +47,25 @@ function Navbar() {
       >
         <div className="flex items-end gap-10">
           {/* {appleIcon} */}
-          <a href="#!" className="text-2xl font-bold uppercase pt-3 ">
+          <Link to="/" className="text-2xl font-bold uppercase pt-3 ">
             QPICK
-          </a>
+          </Link>
           <ul className="flex text-textColor text-xl gap-2 ">
             <li>
-              <a
-                href="#!"
+              <Link
+                to="/"
                 className="hover:text-black duration-100 ease-in-out font-bold"
               >
                 Главная
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href=""
+              <Link
+               to={"/contact"}
                 className="hover:text-black duration-100 ease-in-out font-bold"
               >
                 Контакты
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -136,6 +136,8 @@ function Navbar() {
           setIsSign={setIsSign}
         />
       )}
+
+      <Outlet />
     </div>
   );
 }
