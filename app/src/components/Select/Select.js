@@ -3,8 +3,22 @@ import { styled } from "styled-components";
 import { BsPhone } from "react-icons/bs";
 import { FiChevronDown } from "react-icons/fi";
 import { selectItems } from "../../utils/data";
+import { useStateValue } from "../../context/stateProvider";
+import { actionType } from "../../context/reducer";
 function Select() {
   const [selectedDevice, setSelectedDevice] = useState("");
+
+  const [{}, dispatch] = useStateValue();
+
+  const select = (e)=>{
+    setSelectedDevice(e.target.value)
+    dispatch({
+      type: actionType.SET_DEVICE,
+      chooseDevice: e.target.value
+    })
+  }
+  
+
   return (
     <Wrapper>
       <SelectPreview className="flex items-cente gap-2" htmlFor="select">
@@ -12,7 +26,7 @@ function Select() {
         {selectedDevice === "" ? "Выбрать модель телефона" : selectedDevice}
         <FiChevronDown className="text-xl" />
       </SelectPreview>
-      <SelectOriginal onChange={(e) => setSelectedDevice(e.target.value)}>
+      <SelectOriginal onChange={ select}>
         {selectItems.map(({ name, values }, i) => {
           return (
             <optgroup label={name} key={i}>

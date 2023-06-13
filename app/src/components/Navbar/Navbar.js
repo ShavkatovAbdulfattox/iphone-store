@@ -50,7 +50,7 @@ function Navbar() {
           <Link to="/" className="text-2xl font-bold uppercase pt-3 ">
             QPICK
           </Link>
-          <ul className="flex text-textColor text-xl gap-2 ">
+          <ul className="flex text-textColor text-xl gap-3 ">
             <li>
               <Link
                 to="/"
@@ -61,10 +61,10 @@ function Navbar() {
             </li>
             <li>
               <Link
-               to={"/contact"}
+                to={"/service"}
                 className="hover:text-black duration-100 ease-in-out font-bold"
               >
-                Контакты
+                Условия
               </Link>
             </li>
           </ul>
@@ -79,14 +79,18 @@ function Navbar() {
               scale: 0.8,
             }}
           >
-            <AiOutlineHeart className="cursor-pointer" />
+            <Link to={"/saved"}>
+              <AiOutlineHeart className="cursor-pointer" />
+            </Link>
           </motion.div>
           <motion.div
             whileTap={{
               scale: 0.8,
             }}
           >
-            <AiOutlineShoppingCart className="cursor-pointer" />
+            <Link to="/cart">
+              <AiOutlineShoppingCart className="cursor-pointer" />
+            </Link>
           </motion.div>
 
           <div>

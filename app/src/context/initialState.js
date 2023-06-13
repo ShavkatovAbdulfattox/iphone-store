@@ -10,4 +10,5 @@ const logged =
 export const InitialState = {
   user: userInfo,
   isUserLogged: logged,
+  chooseDevice: "",
 };

@@ -10,10 +10,10 @@ import reducer from "./context/reducer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <div className="bg-gray-200">
+ 
       <StateProvider initialState={InitialState} reducer={reducer}>
         <GlobalStyles />
         <App />
       </StateProvider>
-  </div>
+
 );
