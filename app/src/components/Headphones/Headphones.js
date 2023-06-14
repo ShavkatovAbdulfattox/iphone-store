@@ -34,7 +34,7 @@ function Headphones({ data }) {
                   </motion.div>
                 </div>{" "}
                 <motion.div
-                  whileHover={{ scale: 1.2 }}
+                  whileHover={{ scale: 1.1 }}
                   className="min-h-[225px] flex items-center justify-center"
                 >
                   <img src={img} alt={name} className="object-contain" />
