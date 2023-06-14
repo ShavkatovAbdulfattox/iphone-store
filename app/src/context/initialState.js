@@ -1,3 +1,4 @@
+import { data } from "../utils/data";
 import { fetchUser } from "../utils/fetchLocalStorageData";
 
 const userInfo = fetchUser();
@@ -9,6 +10,7 @@ const logged =
 
 export const InitialState = {
   user: userInfo,
+  data: data,
   isUserLogged: logged,
   chooseDevice: "",
 };

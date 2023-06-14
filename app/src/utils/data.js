@@ -49,52 +49,53 @@ export const iphone12 = [
   },
 ];
 
-export const headphones = [
-  {
-    name: "Apple BYZ S852I",
-    cost: "16",
-    action: "20",
-    rate: "4.7",
-    img: H_img,
-    favourite: false,
-  },
-  {
-    name: "Apple EarPods",
-    cost: "36.5",
-    rate: "4.5",
-    img: H_img2,
-    favourite: false,
-  },
-  {
-    name: "Apple EarPods",
-    cost: "60.7",
-    action: "",
-    rate: "4.5",
-    img: H_img3,
-    favourite: false,
-  },
-];
-
-export const airpods = [
-  {
-    name: "Apple AirPods",
-    cost: "120",
-    rate: "4.7",
-    img: A_img,
-    favourite: false,
-  },
-  {
-    name: "GERLAX GH-04",
-    cost: "136.5",
-    rate: "4.5",
-    img: A_img2,
-    favourite: false,
-  },
-  {
-    name: "Apple EarPods",
-    cost: "30.7",
-    rate: "4.5",
-    img: A_img3,
-    favourite: false,
-  },
-];
+export const data = {
+  airpods: [
+    {
+      name: "Apple AirPods",
+      cost: "120",
+      rate: "4.7",
+      img: A_img,
+      favourite: false,
+    },
+    {
+      name: "GERLAX GH-04",
+      cost: "136.5",
+      rate: "4.5",
+      img: A_img2,
+      favourite: false,
+    },
+    {
+      name: "Apple EarPods",
+      cost: "30.7",
+      rate: "4.5",
+      img: A_img3,
+      favourite: false,
+    },
+  ],
+  headphones: [
+    {
+      name: "Apple BYZ S852I",
+      cost: "16",
+      action: "20",
+      rate: "4.7",
+      img: H_img,
+      favourite: false,
+    },
+    {
+      name: "Apple EarPods",
+      cost: "36.5",
+      rate: "4.5",
+      img: H_img2,
+      favourite: false,
+    },
+    {
+      name: "Apple EarPods",
+      cost: "60.7",
+      action: "",
+      rate: "4.5",
+      img: H_img3,
+      favourite: false,
+    },
+  ],
+};

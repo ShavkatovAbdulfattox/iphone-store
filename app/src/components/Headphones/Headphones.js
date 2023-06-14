@@ -1,18 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import { headphones } from "../../utils/data";
 import { AiOutlineHeart } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { BsCartPlus, BsStarFill } from "react-icons/bs";
 
-function Headphones() {
-  const save = () => {};
+function Headphones({ data }) {
+  const save = (data, name, fav) => {
+    console.log(true);
+
+  };
   return (
-    <section className="container mt-7">
+    <section className="container mt-7 ">
       <h2 className=" text-gray-500 font-bold text-2xl mb-5">Наушники</h2>
       <Cart>
-        {headphones.map(
-          ({ name, cost, img, favourite, rate, action }, cartIndex) => {
+        {data.map(
+          ({ name, cost, img, favourite, rate, action }, cartIndex, data) => {
             return (
               <div
                 className="flex flex-col justify-center items-center p-5 max-w-sm basis-96 rounded-3xl shadow-lg bg-white hover:bg-primary duration-100 ease-out"
@@ -22,16 +24,12 @@ function Headphones() {
                   <motion.div
                     whileTap={{ scale: 0.75 }}
                     className="self-start"
-                    onClick={save}
+                    onClick={() => save(data, name, favourite)}
                   >
                     <AiOutlineHeart className="text-3xl cursor-pointer text-cyan-700 fill-slate-900" />
                   </motion.div>
 
-                  <motion.div
-                    whileTap={{ scale: 0.75 }}
-                    className="self-start"
-                    onClick={save}
-                  >
+                  <motion.div whileTap={{ scale: 0.75 }} className="self-start">
                     <BsCartPlus className="text-3xl cursor-pointer text-cyan-700 fill-slate-900" />
                   </motion.div>
                 </div>{" "}
