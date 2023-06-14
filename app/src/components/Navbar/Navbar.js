@@ -78,10 +78,12 @@ function Navbar() {
             whileTap={{
               scale: 0.8,
             }}
+            className="relative"
           >
             <Link to={"/saved"}>
               <AiOutlineHeart className="cursor-pointer" />
             </Link>
+            <span className="absolute block  bg-orange-500 rounded-[100%] text-white font-extrabold text-[12px]  -top-1 -right-2 px-[6px] drop-shadow-sm">9</span>
           </motion.div>
           <motion.div
             whileTap={{

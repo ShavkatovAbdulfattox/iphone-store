@@ -5,12 +5,14 @@ import Headphones from "../Headphones/Headphones";
 import { useStateValue } from "../../context/stateProvider";
 
 function Main() {
-  const [{data}, { dispatch }] = useStateValue();
+  const [{ data }, dispatch] = useStateValue();
+
+
   return (
     <main className="flex-auto mb-20  ">
       <Cases />
-       <Headphones data={data.headphones}/>
-       <Headphones data={data.airpods}/>
+      <Headphones data={data.headphones} />
+      <Headphones data={data.airpods} />
     </main>
   );
 }

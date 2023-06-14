@@ -3,6 +3,7 @@ export const actionType = {
   SET_ISSIGN: "SET_ISSIGN",
   SET_USER: "SET_USER",
   SET_DEVICE: "SET_DEVICE",
+  SET_SAVE: "SET_SAVE",
 };
 
 function reducer(state, action) {
@@ -24,6 +25,7 @@ function reducer(state, action) {
         ...state,
         chooseDevice: action.chooseDevice,
       };
+
     default:
       return state;
   }
