@@ -4,6 +4,7 @@ export const actionType = {
   SET_USER: "SET_USER",
   SET_DEVICE: "SET_DEVICE",
   SET_SAVE: "SET_SAVE",
+  SET_CATEGORY: "SET_CATEGORY",
 };
 
 function reducer(state, action) {
@@ -28,7 +29,12 @@ function reducer(state, action) {
     case actionType.SET_SAVE:
       return {
         ...state,
-        amountOfSavedCarts: action.amountOfSavedCarts,
+        amountOfLikedCarts: action.amountOfLikedCarts,
+      };
+    case actionType.SET_CATEGORY:
+      return {
+        ...state,
+        categoryName: action.categoryName,
       };
     default:
       return state;

@@ -1,5 +1,6 @@
-import { data } from "../utils/data";
+import { dataCases, dataChargers } from "../utils/data";
 import { fetchUser } from "../utils/fetchLocalStorageData";
+import { countLikedCarts, getName } from "../utils/helper";
 
 const userInfo = fetchUser();
 
@@ -10,8 +11,10 @@ const logged =
 
 export const InitialState = {
   user: userInfo,
-  data: data,
+  dataCases: dataCases,
+  dataChargers: dataChargers,
   isUserLogged: logged,
   chooseDevice: "",
-  amountOfLikedCarts:0
+  amountOfLikedCarts:0,
+  categoryName: getName(dataCases),
 };
