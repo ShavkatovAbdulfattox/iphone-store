@@ -13,4 +13,5 @@ export const InitialState = {
   data: data,
   isUserLogged: logged,
   chooseDevice: "",
+  amountOfLikedCarts:0
 };
