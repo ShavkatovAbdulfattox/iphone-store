@@ -3,13 +3,32 @@ import styled from "styled-components";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { BsCartPlus, BsStarFill } from "react-icons/bs";
+import { useStateValue } from "../../context/stateProvider";
+import { actionType } from "../../context/reducer";
 
-function Headphones({ data }) {
+function Headphones({ data, bigData }) {
   const [dataHeadphones, setDataHeadphones] = useState(data);
+
+  const [{ amountOfLikedCarts }, dispatch] = useStateValue();
   const save = (index) => {
     const updateItems = [...dataHeadphones];
     updateItems[index].favourite = !updateItems[index].favourite;
     setDataHeadphones(updateItems);
+
+    // let amount = 0;
+
+    for (const item of Object.entries(data)) {
+      item.map((item) => {
+        if (item.favourite) {
+          return (amountOfLikedCarts += 1);
+        } else {
+          return amountOfLikedCarts;
+        }
+      });
+    }
+
+    console.log(amountOfLikedCarts);;
+
   };
 
   return (
