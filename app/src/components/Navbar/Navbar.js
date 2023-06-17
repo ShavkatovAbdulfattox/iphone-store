@@ -11,10 +11,14 @@ import { Outlet, Link } from "react-router-dom";
 
 import Select from "../Select/Select";
 import Login from "../Login/Login";
+// import { countLikedCartsAmount } from "../../utils/helper";
 function Navbar() {
   const [{ isUserLogged, user }, dispatch] = useStateValue();
   const [isSign, setIsSign] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
+
+  // ! show the amount of the liked carts
+
 
   const logOut = async () => {
     try {
@@ -83,7 +87,11 @@ function Navbar() {
             <Link to={"/saved"}>
               <AiOutlineHeart className="cursor-pointer" />
             </Link>
-            <span className="absolute block  bg-orange-500 rounded-[100%] text-white font-extrabold text-[12px]  -top-1 -right-2 px-[6px] drop-shadow-sm">9</span>
+            {/* {amountOfLikedCarts && (
+             <span className="absolute block  bg-orange-500 rounded-[100%] text-white font-extrabold text-[12px]  -top-1 -right-2 px-[6px] drop-shadow-sm">
+                amountOfLikedCarts
+              </span>
+            )} */}
           </motion.div>
           <motion.div
             whileTap={{

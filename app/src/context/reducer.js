@@ -25,7 +25,11 @@ function reducer(state, action) {
         ...state,
         chooseDevice: action.chooseDevice,
       };
-
+    case actionType.SET_SAVE:
+      return {
+        ...state,
+        amountOfSavedCarts: action.amountOfSavedCarts,
+      };
     default:
       return state;
   }
