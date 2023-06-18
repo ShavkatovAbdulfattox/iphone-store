@@ -2,14 +2,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { motion } from "framer-motion";
-import { BsCartPlus, BsStarFill } from "react-icons/bs";
+import { BsCartPlus, BsFillCartCheckFill, BsStarFill } from "react-icons/bs";
 // import { useStateValue } from "../../context/stateProvider";
-import { actionType } from "../../context/reducer";
+// import { actionType } from "../../context/reducer";
+import { toast } from "react-toastify";
 
-function Headphones({ data, category, setAmoutOfSaved }) {
+function Headphones({ data, category, setAmoutOfSaved, setAddToCart }) {
   const [dataIphone, setDataIphone] = useState([]);
-  // const [{ amountOfLikedCasesCarts }, dispatch] = useStateValue();
-
   useEffect(() => {
     setDataIphone(data.filter((item) => item.name === category));
   }, [data, category]);
@@ -17,6 +16,14 @@ function Headphones({ data, category, setAmoutOfSaved }) {
   const save = (index) => {
     const updateItems = [...dataIphone];
     updateItems[index].favourite = !updateItems[index].favourite;
+    setDataIphone(updateItems);
+  };
+
+  const addToCart = (index, cart) => {
+    if (cart) return;
+    const updateItems = [...dataIphone];
+    updateItems[index].amount += 1;
+    updateItems[index].cart = true;
     setDataIphone(updateItems);
   };
 
@@ -31,13 +38,18 @@ function Headphones({ data, category, setAmoutOfSaved }) {
     setAmoutOfSaved(amountLiked);
   }, [dataIphone, setAmoutOfSaved]);
 
+  useEffect(() => {
+    const addedCart = data.filter((item) => item.cart === true);
+    setAddToCart(addedCart); 
+  }, [dataIphone,setAddToCart]);
+
   return (
     <section className="container mt-7 ">
       <h2 className=" text-gray-500 font-bold text-2xl mb-5 uppercase">
         {category}
       </h2>
       <Cart>
-        {dataIphone.map(({ name, cost, img, favourite }, cartIndex, data) => {
+        {dataIphone.map(({ name, cost, img, favourite, cart }, cartIndex) => {
           return (
             <div
               className="flex flex-col justify-center items-center p-5 min-h-[450px] max-h-[500px] max-w-sm min-w-[384px]   rounded-3xl shadow-lg bg-white "
@@ -56,8 +68,16 @@ function Headphones({ data, category, setAmoutOfSaved }) {
                   )}
                 </motion.div>
 
-                <motion.div whileTap={{ scale: 0.75 }} className="self-start">
-                  <BsCartPlus className="text-3xl cursor-pointer text-cyan-700 fill-slate-900" />
+                <motion.div
+                  whileTap={{ scale: 0.75 }}
+                  className="self-start"
+                  onClick={() => addToCart(cartIndex, cart)}
+                >
+                  {cart ? (
+                    <BsFillCartCheckFill className="text-3xl cursor-pointer text-cyan-700 fill-slate-900" />
+                  ) : (
+                    <BsCartPlus className="text-3xl cursor-pointer text-cyan-700 fill-slate-900" />
+                  )}
                 </motion.div>
               </div>{" "}
               <motion.div

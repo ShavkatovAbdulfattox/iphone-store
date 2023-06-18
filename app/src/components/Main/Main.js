@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Cases from "../Cases/Cases";
 import Headphones from "../Headphones/Headphones";
-// import Airpods from "../Airpods/Airpods";
 import { useStateValue } from "../../context/stateProvider";
-import { getName } from "../../utils/helper";
 import { actionType } from "../../context/reducer";
 // import { dataChargers } from "../../utils/data";
 // import { actionType } from "../../context/reducer";
 
 function Main() {
-  const [{ dataCases, dataChargers, chooseDevice }, dispatch] = useStateValue();
+  const [{ dataCases, dataChargers, chooseDevice, cart }, dispatch] =
+    useStateValue();
   const [amountOfLikedCases, setAmountOfLikedCases] = useState(0);
   const [amountOfLikedChargers, setAmountOfLikedChargers] = useState(0);
-
-  // const [bigDataCases, setBigDataCases] = useState(dataCases);
+  const [addCartCases, setAddCartCases] = useState([]);
+  const [addCartChargers, setAddCartChargers] = useState([]);
 
   useEffect(() => {
     dispatch({
@@ -21,6 +20,13 @@ function Main() {
       amountOfLikedCarts: amountOfLikedCases + amountOfLikedChargers,
     });
   }, [amountOfLikedCases, amountOfLikedChargers, dispatch]);
+
+  useEffect(() => {
+    dispatch({
+      type: actionType.SET_CART,
+      cart: [...addCartCases, ...addCartChargers],
+    });
+  }, [addCartCases, addCartChargers]);
 
   const deviceSelected =
     chooseDevice === "Выбрать модель телефона" || chooseDevice === "";
@@ -31,11 +37,13 @@ function Main() {
         data={dataCases}
         category={deviceSelected ? "Iphone 11" : chooseDevice}
         setAmoutOfSaved={setAmountOfLikedCases}
+        setAddToCart={setAddCartCases}
       />
       <Headphones
         data={dataChargers}
         category={deviceSelected ? "Iphone 11" : chooseDevice}
         setAmoutOfSaved={setAmountOfLikedChargers}
+        setAddToCart={setAddCartChargers}
       />
     </main>
   );
