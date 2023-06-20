@@ -28,6 +28,8 @@ function Main() {
     });
   }, [addCartCases, addCartChargers]);
 
+
+
   const deviceSelected =
     chooseDevice === "Выбрать модель телефона" || chooseDevice === "";
   return (
