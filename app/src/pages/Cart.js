@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import Footer from "../components/Footer/Footer";
 import { useStateValue } from "../context/stateProvider";
 import { MdOutlineDeleteForever } from "react-icons/md";
@@ -9,15 +9,80 @@ import { RiTruckLine } from "react-icons/ri";
 
 import Map from "../assets/images/map.png";
 import Empty from "../components/Empty/Empty";
+import { toast } from "react-toastify";
+import { actionType } from "../context/reducer";
 
 function Cart() {
-  const [{ cart }] = useStateValue();
+  const [{ cart, dataChargers, dataCases }, dispatch] = useStateValue();
+  const [boughtProduct, setBoughtProduct] = useState(cart);
+  const [order,setOrder] = useState(false)
 
-  console.log(cart);
+  const deleteItem = (index) => {
+    const updateCart = boughtProduct.filter((_, i) => i !== index);
+    setBoughtProduct(updateCart);
+
+    toast.error("Удалено из корзины", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 2000,
+    });
+
+    dispatch({
+      type: actionType.SET_CART,
+      cart: updateCart,
+    });
+
+    // ! Updating state in order to ensure that in the data was changes
+    updateState();
+  };
+
+  function updateState() {
+    // Update the respective data array
+    const updateDataCases = dataCases.map((item, i) => {
+      item.amount = 0;
+      item.cart = false;
+      return item;
+    });
+    const updateDataChargers = dataChargers.map((item, i) => {
+      item.amount = 0;
+      item.cart = false;
+      return item;
+    });
+
+    dispatch({
+      type: actionType.SET_DATA_CASES,
+      dataCases: updateDataCases,
+    });
+
+    dispatch({
+      type: actionType.SET_DATA_CHARGERS,
+      dataChargers: updateDataChargers,
+    });
+  }
+
+  const incOrDecAmount = (action, index) => {
+    if (action === "inc") {
+      const incAmount = [...boughtProduct];
+      if (incAmount[index].amount >= 10) return;
+      incAmount[index].amount++;
+      setBoughtProduct(incAmount);
+    }
+    if (action === "dec") {
+      const decAmount = [...boughtProduct];
+      if (decAmount[index].amount <= 1) return;
+      decAmount[index].amount--;
+      setBoughtProduct(decAmount);
+    }
+  };
+  const totalAmount = boughtProduct.reduce((acc, cur) => {
+    const price = cur.cost.replace("UZS", "").replaceAll(",", "") / 100;
+    return acc + price;
+  }, 0);
+
 
   return (
+
     <div className="h-[95vh] flex flex-col justify-between ">
-      {cart.length <= 0 ? (
+      {boughtProduct.length <= 0 ? (
         <Empty />
       ) : (
         <main className="mt-20 mb-20">
@@ -28,7 +93,7 @@ function Cart() {
             <div className="flex justify-between items-start">
               <div className=" max-w-2xl w-1/2 ">
                 <div className="min-h-[400px] max-h-[550px] overflow-y-auto px-5">
-                  {cart.map((item, i) => {
+                  {boughtProduct.map((item, i) => {
                     return (
                       <article
                         key={i}
@@ -37,6 +102,7 @@ function Cart() {
                         <motion.button
                           whileTap={{ scale: 0.7 }}
                           className="text-3xl text-red-500"
+                          onClick={() => deleteItem(i)}
                         >
                           <MdOutlineDeleteForever />
                         </motion.button>
@@ -58,6 +124,7 @@ function Cart() {
                             <motion.button
                               whileTap={{ scale: 0.7 }}
                               className="text-4xl bg-orange-300 rounded-full text-white"
+                              onClick={() => incOrDecAmount("dec", i)}
                             >
                               <BiMinus />
                             </motion.button>
@@ -67,6 +134,7 @@ function Cart() {
                             <motion.button
                               whileTap={{ scale: 0.7 }}
                               className="text-4xl bg-orange-300 rounded-full text-white"
+                              onClick={() => incOrDecAmount("inc", i)}
                             >
                               <BsPlus />
                             </motion.button>
@@ -94,7 +162,9 @@ function Cart() {
               <article className="bg-white rounded-3xl max-w-md w-[50%] ">
                 <div className="flex justify-between py-5 px-7">
                   <h2 className="text-xl font-bold">ИТОГО</h2>
-                  <p className="font-mono text-lg">900 000 000 UZ</p>
+                  <p className="font-mono text-lg">
+                    {new Intl.NumberFormat("en-US").format(totalAmount)},00 UZS
+                  </p>
                 </div>
                 <button className="bg-black text-white w-full py-6 rounded-3xl text-2xl font-bold">
                   Перейти к оформлению

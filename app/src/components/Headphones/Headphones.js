@@ -16,6 +16,13 @@ function Headphones({ data, category, setAmoutOfSaved, setAddToCart }) {
   const save = (index) => {
     const updateItems = [...dataIphone];
     updateItems[index].favourite = !updateItems[index].favourite;
+    if (updateItems[index].favourite) {
+      toast.success("Добавлено в избранное", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+        autoClose: 2000,
+      });
+    }
+
     setDataIphone(updateItems);
   };
 
@@ -24,6 +31,10 @@ function Headphones({ data, category, setAmoutOfSaved, setAddToCart }) {
     const updateItems = [...dataIphone];
     updateItems[index].amount += 1;
     updateItems[index].cart = true;
+    toast.success("Добавлено в корзину", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 2000,
+    });
     setDataIphone(updateItems);
   };
 
@@ -39,9 +50,11 @@ function Headphones({ data, category, setAmoutOfSaved, setAddToCart }) {
   }, [dataIphone, setAmoutOfSaved]);
 
   useEffect(() => {
-    const addedCart = data.filter((item) => item.cart === true);
-    setAddToCart(addedCart); 
-  }, [dataIphone,setAddToCart]);
+    const addedCart = data.filter((item) => {
+      return item.cart === true;
+    });
+    setAddToCart(addedCart);
+  }, [data ,dataIphone, setAddToCart]);
 
   return (
     <section className="container mt-7 ">

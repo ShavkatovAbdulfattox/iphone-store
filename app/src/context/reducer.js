@@ -6,6 +6,8 @@ export const actionType = {
   SET_SAVE: "SET_SAVE",
   SET_CATEGORY: "SET_CATEGORY",
   SET_CART: "SET_CART",
+  SET_DATA_CASES: "SET_DATA_CASES",
+  SET_DATA_CHARGERS: "SET_DATA_CHARGERS",
 };
 
 function reducer(state, action) {
@@ -38,6 +40,16 @@ function reducer(state, action) {
         categoryName: action.categoryName,
       };
     case actionType.SET_CART:
+      return {
+        ...state,
+        cart: action.cart,
+      };
+    case actionType.SET_DATA_CASES:
+      return {
+        ...state,
+        cart: action.cart,
+      };
+    case actionType.SET_DATA_CHARGERS:
       return {
         ...state,
         cart: action.cart,
