@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer/Footer";
 import { useStateValue } from "../context/stateProvider";
 import { MdOutlineDeleteForever } from "react-icons/md";
@@ -17,9 +17,16 @@ function Cart() {
   const [{ cart, dataChargers, dataCases }, dispatch] = useStateValue();
   const [boughtProduct, setBoughtProduct] = useState(cart);
   const [order, setOrder] = useState(false);
+  const [totalAmount, setTotalAmount] = useState(0); // Initialize with 0
+
+  useEffect(() => {
+    calculateTotalAmount(); // Calculate the initial total amount
+  }, [boughtProduct]); // Run the effect whenever boughtProduct changes
 
   const deleteItem = (index) => {
-    const updateCart = boughtProduct.filter((_, i) => i !== index);
+    const updatedProduct = [...boughtProduct];
+    updatedProduct[index].amount = 1; // Update the amount of the deleted item to 1
+    const updateCart = updatedProduct.filter((_, i) => i !== index);
     setBoughtProduct(updateCart);
 
     toast.error("Удалено из корзины", {
@@ -32,20 +39,23 @@ function Cart() {
       cart: updateCart,
     });
 
-    // ! Updating state in order to ensure that in the data was changes
-    updateState();
+    updateState(index); // Pass the index of the deleted item to the updateState function
   };
 
-  function updateState() {
+  function updateState(deletedIndex) {
     // Update the respective data array
     const updateDataCases = dataCases.map((item, i) => {
-      item.amount = 0;
-      item.cart = false;
+      if (i === deletedIndex) {
+        item.amount = 1; // Set the amount of the deleted item to 1
+        item.cart = false;
+      }
       return item;
     });
     const updateDataChargers = dataChargers.map((item, i) => {
-      item.amount = 0;
-      item.cart = false;
+      if (i === deletedIndex) {
+        item.amount = 1; // Set the amount of the deleted item to 1
+        item.cart = false;
+      }
       return item;
     });
 
@@ -58,6 +68,13 @@ function Cart() {
       type: actionType.SET_DATA_CHARGERS,
       dataChargers: updateDataChargers,
     });
+  }
+  function calculateTotalAmount() {
+    const updatedTotalAmount = boughtProduct.reduce((acc, cur) => {
+      const price = cur.cost.replace("UZS", "").replaceAll(",", "") / 100;
+      return acc + price * cur.amount;
+    }, 0);
+    setTotalAmount(updatedTotalAmount);
   }
 
   const incOrDecAmount = (action, index) => {
@@ -74,15 +91,11 @@ function Cart() {
       setBoughtProduct(decAmount);
     }
   };
-  const totalAmount = boughtProduct.reduce((acc, cur) => {
-    const price = cur.cost.replace("UZS", "").replaceAll(",", "") / 100;
-    return acc + price;
-  }, 0);
 
   return (
     <div className="h-[95vh] flex flex-col justify-between ">
       {order ? (
-        <Order />
+        <Order data={boughtProduct} total={totalAmount}/>
       ) : (
         <>
           {boughtProduct.length <= 0 ? (

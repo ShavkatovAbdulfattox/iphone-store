@@ -2,10 +2,13 @@ import React from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { RiVisaFill } from "react-icons/ri";
 import { RxCodesandboxLogo } from "react-icons/rx";
+import Swal from "sweetalert2";
 
-function Order() {
+import { auth } from "../../config/firebase.config";
+
+function Order({ data, total }) {
   return (
-    <article className=" flex flex-col justify-center items-center mt-10">
+    <article className=" flex flex-col justify-center items-center mt-10 mb-10">
       <div className="max-w-7xl w-full">
         <h2 className="text-2xl font-bold tracking-wider">Оформление заказа</h2>
         <div className="flex gap-3">
@@ -62,15 +65,38 @@ function Order() {
             <div className="bg-white shadow-xl rounded-3xl py-6 px-7">
               <h3 className="text-xl font-bold tracking-wider">Ваш заказ</h3>
               <div className="w-full mt-3">
-                <h3 className="flex justify-between items-center text-lg font-mono">
-                  Наушники Apple BYZ S852I <span className="font-bold">1x</span>{" "}
-                  <p className="font-mono">40 000uzs</p>
-                </h3>
+                <div className="overflow-y-scroll max-h-[200px] h-[100%] px-5 mb-5">
+                  {data.map((item, i) => {
+                    return (
+                      <div
+                        className="flex justify-between items-center text-lg font-mono mb-3"
+                        key={i}
+                      >
+                        <div className="flex items-center gap-2">
+                          <img
+                            src={item.img}
+                            alt={item.name}
+                            className="min-h-[9] max-h-16 w-12 object-contain"
+                          />
+                          {item.name}
+                          <span className="font-bold">{item.amount}x</span>{" "}
+                        </div>
+
+                        <p className="font-mono">{item.cost}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+
                 <h3 className="flex justify-between text-lg font-mono">
                   Доставка <p className="font-mono">40 000uzs</p>
                 </h3>
                 <h3 className="flex justify-between text-lg font-mono">
-                  К оплате <p className="font-mono">40 000uzs</p>
+                  К оплате{" "}
+                  <p className="font-mono">
+                    {" "}
+                    {new Intl.NumberFormat("en-US").format(total)},00 UZS
+                  </p>
                 </h3>
               </div>
             </div>
@@ -95,7 +121,22 @@ function Order() {
                   />
                 </svg>
               </div>
-              <div className="flex justify-between items-center text-lg ">
+              <div
+                className="flex justify-between items-center text-lg "
+                onClick={() => {
+                  Swal.fire({
+                    title: "Введите промокод",
+                    input: "text",
+                    inputAttributes: {
+                      autocapitalize: "off",
+                    },
+                    showCancelButton: true,
+                    cancelButtonText: "Отменить",
+                    confirmButtonText: "Посмотреть",
+                    showLoaderOnConfirm: true,
+                  });
+                }}
+              >
                 <h4 className="text-gray-500 flex items-center gap-3 cursor-pointer">
                   <RxCodesandboxLogo /> Есть промокод?
                 </h4>
@@ -115,9 +156,17 @@ function Order() {
             </div>
             <div className="bg-white shadow-xl rounded-3xl py-6 px-7 mt-4">
               <h4 className="font-bold text-xl">Номер получателя</h4>
-              <input type="text" placeholder="+7 ___ ___ __ __" className="bg-gray-200 rounded-full w-full py-2 px-3 mt-2" />
+              <input
+                type="text"
+                placeholder="+7 ___ ___ __ __"
+                className="bg-gray-200 rounded-full w-full py-2 px-3 mt-2"
+              />
             </div>
-<button className="w-full bg-black text-white rounded-full py-3 mt-5">Закончить оформление</button>
+            <button className="w-full bg-black text-white rounded-full py-3 mt-5">
+              {auth?.currentUser
+                ? "Закончить оформление"
+                : "Чтоб продолжить пройдите регистрацию"}
+            </button>
           </section>
         </div>
       </div>

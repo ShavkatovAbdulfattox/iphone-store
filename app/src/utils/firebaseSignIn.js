@@ -1,16 +1,10 @@
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import {
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth, db } from "../config/firebase.config";
 
 // ! Javascript framework https://sweetalert2.github.io/
 import Swal from "sweetalert2";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 // Function to check if a user exists in Firestore
@@ -49,7 +43,7 @@ export async function loginInToAcc(email, password) {
       title: "Регистрация",
       text: "Вы вошли успешно в аккаунт!",
     });
-    return userExists.email
+    return userExists.email;
   } else {
     Swal.fire({
       icon: "error",

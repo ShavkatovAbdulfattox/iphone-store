@@ -29,7 +29,7 @@ function Headphones({ data, category, setAmoutOfSaved, setAddToCart }) {
   const addToCart = (index, cart) => {
     if (cart) return;
     const updateItems = [...dataIphone];
-    updateItems[index].amount += 1;
+    updateItems[index].amount = 1;
     updateItems[index].cart = true;
     toast.success("Добавлено в корзину", {
       position: toast.POSITION.BOTTOM_RIGHT,
