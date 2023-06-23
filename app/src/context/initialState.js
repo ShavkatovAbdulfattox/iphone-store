@@ -15,6 +15,7 @@ export const InitialState = {
   dataChargers: dataChargers,
   isUserLogged: logged,
   cart: [],
+  saved:[],
   chooseDevice: "",
   amountOfLikedCarts: 0,
   categoryName: getName(dataCases),

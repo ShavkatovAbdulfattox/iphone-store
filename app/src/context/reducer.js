@@ -8,6 +8,7 @@ export const actionType = {
   SET_CART: "SET_CART",
   SET_DATA_CASES: "SET_DATA_CASES",
   SET_DATA_CHARGERS: "SET_DATA_CHARGERS",
+  SET_SAVED: "SET_SAVED",
 };
 
 function reducer(state, action) {
@@ -53,6 +54,11 @@ function reducer(state, action) {
       return {
         ...state,
         cart: action.cart,
+      };
+    case actionType.SET_SAVED:
+      return {
+        ...state,
+        saved: action.saved,
       };
     default:
       return state;

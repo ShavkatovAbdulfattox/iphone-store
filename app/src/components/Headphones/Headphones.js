@@ -7,7 +7,7 @@ import { BsCartPlus, BsFillCartCheckFill, BsStarFill } from "react-icons/bs";
 // import { actionType } from "../../context/reducer";
 import { toast } from "react-toastify";
 
-function Headphones({ data, category, setAmoutOfSaved, setAddToCart }) {
+function Headphones({ data, category, setAmoutOfSaved, setAddToCart,setAddToSaved }) {
   const [dataIphone, setDataIphone] = useState([]);
   useEffect(() => {
     setDataIphone(data.filter((item) => item.name === category));
@@ -49,12 +49,20 @@ function Headphones({ data, category, setAmoutOfSaved, setAddToCart }) {
     setAmoutOfSaved(amountLiked);
   }, [dataIphone, setAmoutOfSaved]);
 
+  //  ! adding data if to the cart if the cart is true
   useEffect(() => {
     const addedCart = data.filter((item) => {
       return item.cart === true;
     });
     setAddToCart(addedCart);
   }, [data ,dataIphone, setAddToCart]);
+
+  useEffect(() => {
+    const addedCart = data.filter((item) => {
+      return item.favourite === true;
+    });
+    setAddToSaved(addedCart);
+  }, [data ,dataIphone, setAddToSaved]);
 
   return (
     <section className="container mt-7 ">

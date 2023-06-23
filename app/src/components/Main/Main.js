@@ -7,12 +7,16 @@ import { actionType } from "../../context/reducer";
 // import { actionType } from "../../context/reducer";
 
 function Main() {
-  const [{ dataCases, dataChargers, chooseDevice, cart }, dispatch] =
+  const [{ dataCases, dataChargers, chooseDevice }, dispatch] =
     useStateValue();
   const [amountOfLikedCases, setAmountOfLikedCases] = useState(0);
   const [amountOfLikedChargers, setAmountOfLikedChargers] = useState(0);
   const [addCartCases, setAddCartCases] = useState([]);
   const [addCartChargers, setAddCartChargers] = useState([]);
+  const [addSavedCases, setAddSavedCases] = useState([]);
+  const [addSavedChargers, setAddSavedChargers] = useState([]);
+
+
 
   useEffect(() => {
     dispatch({
@@ -26,8 +30,14 @@ function Main() {
       type: actionType.SET_CART,
       cart: [...addCartCases, ...addCartChargers],
     });
-  }, [addCartCases, addCartChargers]);
+  }, [addCartCases, addCartChargers,dispatch]);
 
+  useEffect(() => {  
+    dispatch({
+      type: actionType.SET_SAVED,
+      saved: [...addSavedCases,...addSavedChargers],
+    });
+  }, [addSavedCases, addSavedChargers,dispatch]);
 
 
   const deviceSelected =
@@ -40,12 +50,14 @@ function Main() {
         category={deviceSelected ? "Iphone 11" : chooseDevice}
         setAmoutOfSaved={setAmountOfLikedCases}
         setAddToCart={setAddCartCases}
+        setAddToSaved={setAddSavedCases}
       />
       <Headphones
         data={dataChargers}
         category={deviceSelected ? "Iphone 11" : chooseDevice}
         setAmoutOfSaved={setAmountOfLikedChargers}
         setAddToCart={setAddCartChargers}
+        setAddToSaved={setAddSavedChargers}
       />
     </main>
   );
