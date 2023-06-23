@@ -20,11 +20,11 @@ function Select() {
   
 
   return (
-    <Wrapper>
+    <Wrapper >
       <SelectPreview className="flex items-cente gap-2" htmlFor="select">
         <BsPhone className="text-xl" />
         {selectedDevice === "" ? "Выбрать модель телефона" : selectedDevice}
-        <FiChevronDown className="text-xl" />
+        <FiChevronDown className="md:text-xl text-sm" />
       </SelectPreview>
       <SelectOriginal onChange={ select}>
         {selectItems.map(({ name, values }, i) => {
@@ -47,6 +47,7 @@ function Select() {
 
 const Wrapper = styled.div`
   position: relative;
+
 `;
 
 const SelectPreview = styled.label``;

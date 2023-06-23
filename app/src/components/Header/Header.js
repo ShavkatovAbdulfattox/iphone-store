@@ -7,11 +7,11 @@ function Header() {
 
   return (
     <header className=" bg-gray-950 flex justify-evenly items-center rounded-3xl my-7 shadow-xl">
-      <h1 className="text-white text-4xl font-bold">
+      <h1 className="text-white md:text-4xl text-xl font-bold">
         Аксессуары для <br />{" "}
         {chooseDevice ? chooseDevice : "Iphone 13 Pro Max"}
       </h1>
-      <img src={HeaderImg} alt="iphone-img" className="-mt-10" />
+      <img src={HeaderImg} alt="iphone-img" className="-mt-10 md:w-auto w-44 h-60 object-contain" />
     </header>
   );
 }

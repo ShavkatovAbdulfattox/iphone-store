@@ -118,7 +118,7 @@ function Login({ isLogin, setIsLogin, isSign, setIsSign }) {
               initial={{ opacity: 0, x: 300 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 300 }}
-              className="bg-slate-100 flex flex-col max-w-xl min-w-620 p-7 "
+              className="bg-slate-100 flex flex-col md:max-w-xl md:min-w-620 w-[90%] p-7 "
             >
               <>
                 {" "}
