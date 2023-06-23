@@ -76,16 +76,16 @@ function Headphones({
   return (
     <section className="container mt-7 ">
       <h2 className=" text-gray-500 font-bold text-2xl mb-5 uppercase">
-        {category}
+        {category} {data[0].category}
       </h2>
-      <Cart>
+      <Cart className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 place-items-center">
         {dataIphone.map(({ name, cost, img, favourite, cart }, cartIndex) => {
           return (
             <div
-              className="flex flex-col justify-center items-center p-5 min-h-[450px] max-h-[500px] max-w-sm min-w-[384px]   rounded-3xl shadow-lg bg-white "
+              className="flex flex-col justify-center items-center p-5 min-h-[450px] max-h-[500px] md:max-w-sm md:min-w-[384px] min-w-[284px] w-[80%]   rounded-3xl shadow-lg bg-white "
               key={cartIndex}
             >
-              <div className="self-stretch flex justify-between">
+              <div className="self-stretch flex justify-between ">
                 <motion.div
                   whileTap={{ scale: 0.75 }}
                   className="self-start"
@@ -112,12 +112,12 @@ function Headphones({
               </div>{" "}
               <motion.div
                 whileHover={{ scale: 1.1 }}
-                className="min-h-[225px] w-full flex items-center justify-center"
+                className="min-h-[225px] h-60 w-full flex items-center justify-center rounded-lg"
               >
                 <img
                   src={img}
                   alt={name}
-                  className="object-contain h-[90%] w-[100%]"
+                  className="object-contain h-[90%] rounded-lg  shadow-xl"
                 />
               </motion.div>
               <div className="self-stretch flex justify-between mt-10">
@@ -145,10 +145,12 @@ function Headphones({
   );
 }
 const Cart = styled.div`
-  display: flex;
-  justify-content: space-between;
-  overflow-x: scroll;
-  padding-bottom: 1rem;
+  /* display: grid;
+  grid-template-columns: repeat(3,1fr);
+  place-items: center;
+  flex-wrap: wrap;
+ */ 
+  /* padding-bottom: 1rem;  */
   gap: 2rem;
 `;
 
