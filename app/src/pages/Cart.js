@@ -12,12 +12,15 @@ import Empty from "../components/Empty/Empty";
 import { toast } from "react-toastify";
 import { actionType } from "../context/reducer";
 import Order from "../components/Order/Order";
+import { cartStorage } from "../utils/fetchLocalStorageData";
 
 function Cart() {
   const [{ cart, dataChargers, dataCases }, dispatch] = useStateValue();
   const [boughtProduct, setBoughtProduct] = useState(cart);
   const [order, setOrder] = useState(false);
   const [totalAmount, setTotalAmount] = useState(0); // Initialize with 0
+
+
 
   useEffect(() => {
     calculateTotalAmount(); // Calculate the initial total amount
@@ -95,7 +98,7 @@ function Cart() {
   return (
     <div className="h-[95vh] flex flex-col justify-between ">
       {order ? (
-        <Order data={boughtProduct} total={totalAmount}/>
+        <Order data={boughtProduct} total={totalAmount} />
       ) : (
         <>
           {boughtProduct.length <= 0 ? (

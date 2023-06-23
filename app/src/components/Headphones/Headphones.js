@@ -7,11 +7,19 @@ import { BsCartPlus, BsFillCartCheckFill, BsStarFill } from "react-icons/bs";
 // import { actionType } from "../../context/reducer";
 import { toast } from "react-toastify";
 
-function Headphones({ data, category, setAmoutOfSaved, setAddToCart,setAddToSaved }) {
+function Headphones({
+  data,
+  category,
+  setAmoutOfSaved,
+  setAddToCart,
+  setAddToSaved,
+}) {
   const [dataIphone, setDataIphone] = useState([]);
   useEffect(() => {
     setDataIphone(data.filter((item) => item.name === category));
   }, [data, category]);
+
+
 
   const save = (index) => {
     const updateItems = [...dataIphone];
@@ -28,14 +36,15 @@ function Headphones({ data, category, setAmoutOfSaved, setAddToCart,setAddToSave
 
   const addToCart = (index, cart) => {
     if (cart) return;
-    const updateItems = [...dataIphone];
-    updateItems[index].amount = 1;
-    updateItems[index].cart = true;
+    const updatedItems = [...dataIphone];
+    updatedItems[index].amount = 1;
+    updatedItems[index].cart = true;
     toast.success("Добавлено в корзину", {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 2000,
     });
-    setDataIphone(updateItems);
+    setDataIphone(updatedItems);
+    
   };
 
   useEffect(() => {
@@ -55,14 +64,14 @@ function Headphones({ data, category, setAmoutOfSaved, setAddToCart,setAddToSave
       return item.cart === true;
     });
     setAddToCart(addedCart);
-  }, [data ,dataIphone, setAddToCart]);
+  }, [data, dataIphone, setAddToCart]);
 
   useEffect(() => {
     const addedCart = data.filter((item) => {
       return item.favourite === true;
     });
     setAddToSaved(addedCart);
-  }, [data ,dataIphone, setAddToSaved]);
+  }, [data, dataIphone, setAddToSaved]);
 
   return (
     <section className="container mt-7 ">

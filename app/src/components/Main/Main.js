@@ -7,14 +7,30 @@ import { actionType } from "../../context/reducer";
 // import { actionType } from "../../context/reducer";
 
 function Main() {
-  const [{ dataCases, dataChargers, chooseDevice }, dispatch] =
-    useStateValue();
+  const [{ dataCases, dataChargers, chooseDevice }, dispatch] = useStateValue();
   const [amountOfLikedCases, setAmountOfLikedCases] = useState(0);
   const [amountOfLikedChargers, setAmountOfLikedChargers] = useState(0);
   const [addCartCases, setAddCartCases] = useState([]);
   const [addCartChargers, setAddCartChargers] = useState([]);
   const [addSavedCases, setAddSavedCases] = useState([]);
   const [addSavedChargers, setAddSavedChargers] = useState([]);
+
+  // useEffect(() => {
+  //   const storedCart = localStorage.getItem("cartShop");
+  //   if (storedCart) {
+  //     const parsedCart = JSON.parse(storedCart);
+  //     setAddCartCases(parsedCart);
+  //   }
+  // }, []);
+
+  // useEffect(() => {
+  //   const storedSaved = localStorage.getItem("saved");
+  //   if (storedSaved) {
+  //     const parsedSaved = JSON.parse(storedSaved);
+  //     setAddSavedCases(parsedSaved);
+  //   }
+  // }, []);
+
 
 
 
@@ -30,15 +46,23 @@ function Main() {
       type: actionType.SET_CART,
       cart: [...addCartCases, ...addCartChargers],
     });
-  }, [addCartCases, addCartChargers,dispatch]);
+    // localStorage.setItem(
+    //   "cartShop",
+    //   JSON.stringify([...addCartCases, ...addCartChargers])
+    // );
+  }, [addCartCases, addCartChargers, dispatch]);
 
-  useEffect(() => {  
+  useEffect(() => {
     dispatch({
       type: actionType.SET_SAVED,
-      saved: [...addSavedCases,...addSavedChargers],
+      saved: [...addSavedCases, ...addSavedChargers],
     });
-  }, [addSavedCases, addSavedChargers,dispatch]);
 
+    // localStorage.setItem(
+    //   "saved",
+    //   JSON.stringify([...addSavedCases, ...addSavedChargers])
+    // );
+  }, [addSavedCases, addSavedChargers, dispatch]);
 
   const deviceSelected =
     chooseDevice === "Выбрать модель телефона" || chooseDevice === "";

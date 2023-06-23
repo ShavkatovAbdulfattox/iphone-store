@@ -1,6 +1,8 @@
 import { dataCases, dataChargers } from "../utils/data";
-import { fetchUser } from "../utils/fetchLocalStorageData";
-import { countLikedCarts, getName } from "../utils/helper";
+import {
+  fetchUser,
+} from "../utils/fetchLocalStorageData";
+import {  getName } from "../utils/helper";
 
 const userInfo = fetchUser();
 
