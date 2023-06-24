@@ -12,14 +12,12 @@ import Empty from "../components/Empty/Empty";
 import { toast } from "react-toastify";
 import { actionType } from "../context/reducer";
 import Order from "../components/Order/Order";
-import { cartStorage } from "../utils/fetchLocalStorageData";
 
 function Cart() {
   const [{ cart, dataChargers, dataCases }, dispatch] = useStateValue();
   const [boughtProduct, setBoughtProduct] = useState(cart);
   const [order, setOrder] = useState(false);
   const [totalAmount, setTotalAmount] = useState(0); // Initialize with 0
-
 
 
   useEffect(() => {
@@ -36,7 +34,6 @@ function Cart() {
       position: toast.POSITION.BOTTOM_RIGHT,
       autoClose: 2000,
     });
-
     dispatch({
       type: actionType.SET_CART,
       cart: updateCart,

@@ -1,4 +1,4 @@
-  import React, { useState } from "react";
+  import React, { useEffect, useState } from "react";
   import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
   import { BsPersonCircle } from "react-icons/bs";
   import { BiLogOut } from "react-icons/bi";
@@ -14,13 +14,14 @@
   import Login from "../Login/Login";
   // import { countLikedCartsAmount } from "../../utils/helper";
   function Navbar() {
-    const [{ isUserLogged, amountOfLikedCarts, user }, dispatch] =
+    const [{ isUserLogged, amountOfLikedCarts,cart, user }, dispatch] =
       useStateValue();
     const [isSign, setIsSign] = useState(false);
     const [isLogin, setIsLogin] = useState(false);
     const [isOpen, setIsopen] = useState(false);
 
     // ! show the amount of the liked carts
+
 
     const logOut = async () => {
       try {
@@ -94,7 +95,8 @@
               <Link to={"/saved"}>
                 <AiOutlineHeart className="cursor-pointer" />
               </Link>
-              {amountOfLikedCarts === 0 ? undefined : (
+   
+                 {amountOfLikedCarts === 0 ? undefined : (
                 <span className="absolute block  bg-orange-500 rounded-[100%] text-white font-extrabold text-[12px]  -top-1 -right-2 px-[6px] drop-shadow-sm">
                   {amountOfLikedCarts}
                 </span>
@@ -104,10 +106,12 @@
               whileTap={{
                 scale: 0.8,
               }}
+              className="relative"
             >
               <Link to="/cart">
                 <AiOutlineShoppingCart className="cursor-pointer" />
               </Link>
+
             </motion.div>
 
             <div>
@@ -153,7 +157,7 @@
           </div>
         </motion.nav>
       
-          <div className={`${isOpen ? "h-32 bg-gray-300 py-10 -mt-10" : "h-0"} duration-150  rounded-md overflow-hidden`}>
+          <div className={`${isOpen ? "h-32 bg-gray-300 py-10 -mt-10 -mx-4 px-4" : "h-0"} duration-150  rounded-md overflow-hidden`}>
             <ul className="flex text-textColor md:text-xl text-md gap-3 mb-3 mt-2 ">
               <li>
                 <Link
