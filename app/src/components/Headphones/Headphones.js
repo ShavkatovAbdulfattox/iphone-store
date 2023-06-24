@@ -75,10 +75,10 @@ function Headphones({
 
   return (
     <section className="container mt-7 ">
-      <h2 className=" text-gray-500 font-bold text-2xl mb-5 uppercase">
+      <h2 className=" text-gray-500 font-bold md:text-2xl text-lg mb-5 uppercase md:text-left text-center">
         {category} {data[0].category}
       </h2>
-      <Cart className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 place-items-center">
+      <Cart className="grid xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 place-items-center md:gap-20 gap-5">
         {dataIphone.map(({ name, cost, img, favourite, cart }, cartIndex) => {
           return (
             <div
@@ -121,9 +121,9 @@ function Headphones({
                 />
               </motion.div>
               <div className="self-stretch flex justify-between mt-10">
-                <h3 className="font-bold text-lg">{name}</h3>
+                <h3 className="font-bold md:text-lg text-md uppercase">{name}</h3>
                 <span>
-                  <p className="text-xl text-orange-500 font-extrabold">
+                  <p className="md:text-xl text-lg text-orange-500 font-extrabold">
                     {cost}
                   </p>
                   {/* {action && (
@@ -151,7 +151,6 @@ const Cart = styled.div`
   flex-wrap: wrap;
  */ 
   /* padding-bottom: 1rem;  */
-  gap: 2rem;
 `;
 
 export default Headphones;

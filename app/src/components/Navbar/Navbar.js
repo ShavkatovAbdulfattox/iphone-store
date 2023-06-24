@@ -153,8 +153,8 @@
           </div>
         </motion.nav>
       
-          <div className={`${isOpen ? "h-24 visible bg-gray-300" : "h-0 invisible"} duration-150  py-4 px-5 rounded-md`}>
-            <ul className="flex text-textColor md:text-xl text-md gap-3 mb-3">
+          <div className={`${isOpen ? "h-32 bg-gray-300 py-10 -mt-10" : "h-0"} duration-150  rounded-md overflow-hidden`}>
+            <ul className="flex text-textColor md:text-xl text-md gap-3 mb-3 mt-2 ">
               <li>
                 <Link
                   to="/"

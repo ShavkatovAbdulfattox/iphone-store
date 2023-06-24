@@ -6,22 +6,22 @@ function Footer() {
   return (
     <footer className=" container bg-white px-5 py-5 rounded-tl-3xl rounded-tr-3xl flex justify-between items-center shadow-2xl">
  <div className="">
- <a href="#!" className="text-2xl font-bold uppercase  mt-4">
+ <a href="#!" className="md:text-2xl text-lg font-bold uppercase  mt-4">
         QPICK
       </a>
       <ul>
         <li>
-          <a href="#!" className="font-mono text-lg">
+          <a href="#!" className="font-mono md:text-lg text-sm">
             Избранное
           </a>
         </li>
         <li>
-          <a href="#!" className="font-mono text-lg">
+          <a href="#!" className="font-mono md:text-lg text-sm">
             Корзина
           </a>
         </li>
         <li>
-          <a href="#!" className="font-mono text-lg">
+          <a href="#!" className="font-mono md:text-lg text-sm">
             Контакты
           </a>
         </li>
@@ -29,7 +29,7 @@ function Footer() {
  </div>
 
       <div>
-        <p className="font-thin tracking-wide text-lg mb-2">Условия сервиса</p>
+        <p className="font-thin tracking-wide md:text-lg text-sm mb-2">Условия сервиса</p>
         {/* 
           ! *********** Language ***********
          */}
@@ -41,9 +41,9 @@ function Footer() {
 
       {/* Icons */}
       <div className="md:flex flex-col gap-2">
-        <BsInstagram className="text-3xl cursor-pointer" />
-        <BsTelegram className="text-3xl cursor-pointer" />
-        <BsFacebook className="text-3xl cursor-pointer" />
+        <BsInstagram className="md:text-3xl text-xl  cursor-pointer m-0" />
+        <BsTelegram className="md:text-3xl  text-xl cursor-pointer md:m-0 mt-2" />
+        <BsFacebook className="md:text-3xl  text-xl cursor-pointer md:m-0 mt-2" />
       </div>
     </footer>
   );

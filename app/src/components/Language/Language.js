@@ -7,12 +7,12 @@ function Language() {
 
   return (
     <div className="flex items-center gap-2">
-      <GrLanguage className=" text-xl" />
+      <GrLanguage className="md:text-xl text-lg" />
       <ul className="flex gap-2">
         {lang.map((txt, i) => {
           return (
             <li
-              className={`cursor-pointer text-lg ${
+              className={`cursor-pointer md:text-lg text-sm ${
                 isActive === i ? "text-orange-500" : undefined
               }`}
               key={i}

@@ -21,7 +21,7 @@ function Select() {
 
   return (
     <Wrapper >
-      <SelectPreview className="flex items-cente gap-2" htmlFor="select">
+      <SelectPreview className="flex items-center gap-2" htmlFor="select">
         <BsPhone className="text-xl" />
         {selectedDevice === "" ? "Выбрать модель телефона" : selectedDevice}
         <FiChevronDown className="md:text-xl text-sm" />

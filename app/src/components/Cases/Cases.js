@@ -4,7 +4,7 @@ import { iphone12 } from "../../utils/data";
 function Cases() {
   return (
     <section className="container ">
-      <h2 className=" text-gray-500 font-bold text-2xl mb-5">Чехлы</h2>
+      <h2 className=" text-gray-500 font-bold md:text-2xl text-lg mb-5 md:text-left text-center uppercase">Чехлы</h2>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 place-items-center">
         {iphone12.map(({ type, img }, i) => {
           return (
