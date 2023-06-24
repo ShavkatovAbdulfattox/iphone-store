@@ -101,19 +101,19 @@ function Cart() {
           {boughtProduct.length <= 0 ? (
             <Empty />
           ) : (
-            <main className="mt-20 mb-20">
+            <main className="md:mt-20 md:mb-20 mt-7 mb-7">
               <section>
-                <h2 className=" text-gray-500 font-bold text-xl mb-5 uppercase">
+                <h2 className=" text-gray-500 font-bold text-xl md:mb-5 mb-2 uppercase">
                   Корзина
                 </h2>
-                <div className="flex justify-between items-start">
-                  <div className=" max-w-2xl w-1/2 ">
-                    <div className="min-h-[400px] max-h-[550px] overflow-y-auto px-5">
+                <div className="lg:flex justify-between items-start">
+                  <div className="lg:max-w-2xl lg:w-1/2 ">
+                    <div className="lg:min-h-[400px] lg:max-h-[550px] lg:overflow-y-auto grid md:grid-cols-2 grid-cols-1 gap-5 md:px-5">
                       {boughtProduct.map((item, i) => {
                         return (
                           <article
                             key={i}
-                            className="bg-white rounded-3xl py-5 px-7 flex flex-col items-end mb-5"
+                            className="bg-white rounded-3xl py-5 px-7 flex flex-col items-end lg:mb-5"
                           >
                             <motion.button
                               whileTap={{ scale: 0.7 }}
@@ -129,33 +129,33 @@ function Cart() {
                                 className="w-36 h-36 shadow-sm rounded-md object-cover"
                               />
                               <div className="">
-                                <h3 className="text-2xl">{item.name}</h3>
-                                <p className="text-gray-500 text-xl mt-2 font-bold">
+                                <h3 className="lg:text-2xl text-xl uppercase">{item.name}</h3>
+                                <p className="text-gray-500 lg:text-xl text-md mt-2 font-bold">
                                   {item.category}
                                 </p>
                               </div>
                             </div>
-                            <div className="self-start flex items-center justify-between w-full">
+                            <div className="self-start flex items-end justify-between w-full">
                               <div className="flex items-center mt-3">
                                 <motion.button
                                   whileTap={{ scale: 0.7 }}
-                                  className="text-4xl bg-orange-300 rounded-full text-white"
+                                  className="md:text-3xl text-4xl bg-orange-300 rounded-full text-white"
                                   onClick={() => incOrDecAmount("dec", i)}
                                 >
                                   <BiMinus />
                                 </motion.button>
-                                <p className="text-2xl font-bold mx-3">
+                                <p className="lg:text-2xl md:text-xl text-2xl font-bold mx-3">
                                   {item.amount}
                                 </p>
                                 <motion.button
                                   whileTap={{ scale: 0.7 }}
-                                  className="text-4xl bg-orange-300 rounded-full text-white"
+                                  className="lg:text-4xl md:text-3xl text-4xl bg-orange-300 rounded-full text-white"
                                   onClick={() => incOrDecAmount("inc", i)}
                                 >
                                   <BsPlus />
                                 </motion.button>
                               </div>
-                              <p className="text-xl font-mono">{item.cost}</p>
+                              <p className="lg:text-xl text-lg font-mono">{item.cost}</p>
                             </div>
                           </article>
                         );
@@ -167,24 +167,24 @@ function Cart() {
                       <h2 className="text-2xl font-bold mb-4">Доставка</h2>
                       <img src={Map} alt="map" className="px-1" />
                       <div className="flex justify-between items-center mt-5">
-                        <h3 className="text-xl flex gap-2 items-center">
-                          <RiTruckLine className="text-2xl" />
+                        <h3 className="md:text-xl text-lg flex gap-2 items-center">
+                          <RiTruckLine className="md:text-2xl text-xl" />
                           Доставка курьером
                         </h3>
-                        <p className="text-xl font-mono">40 000 uz</p>
+                        <p className="md:text-xl text-lg font-mono">40 000 uz</p>
                       </div>
                     </article>
                   </div>
-                  <article className="bg-white rounded-3xl max-w-md w-[50%] ">
+                  <article className="bg-white rounded-3xl lg:max-w-md lg:w-[50%] w-full lg:mt-0 mt-5">
                     <div className="flex justify-between py-5 px-7">
-                      <h2 className="text-xl font-bold">ИТОГО</h2>
+                      <h2 className="md:text-xl text-lg font-bold">ИТОГО</h2>
                       <p className="font-mono text-lg">
                         {new Intl.NumberFormat("en-US").format(totalAmount)},00
                         UZS
                       </p>
                     </div>
                     <button
-                      className="bg-black text-white w-full py-6 rounded-3xl text-2xl font-bold"
+                      className="bg-black text-white w-full md:py-6 py-3 rounded-3xl md:text-2xl text-xl font-bold"
                       onClick={() => setOrder(!order)}
                     >
                       Перейти к оформлению
