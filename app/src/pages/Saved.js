@@ -63,8 +63,8 @@ function Saved() {
                       className="object-contain h-[90%] rounded-lg  shadow-xl"
                     />
                   </motion.div>
-                  <div className="self-stretch flex justify-between items-center mt-10">
-                    <h3 className="font-bold md:text-lg sm:text-md text-sm">{name}</h3>
+                  <div className="lg:self-stretch lg:flex lg:flex-row lg:justify-between flex flex-col justify-center items-center mt-10">
+                    <h3 className="font-bold md:text-lg  ">{name}</h3>
                     <span>
                     <p className="md:text-xl sm:text-lg text-md text-orange-500 font-mono font-extrabold">
                         {cost}

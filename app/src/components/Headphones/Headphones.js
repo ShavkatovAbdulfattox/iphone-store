@@ -82,7 +82,7 @@ function Headphones({
         {dataIphone.map(({ name, cost, img, favourite, cart }, cartIndex) => {
           return (
             <div
-              className="flex flex-col justify-center items-center p-5 min-h-[450px] max-h-[500px] md:max-w-sm lg:min-w-[384px] min-w-[320px] w-[80%]   rounded-3xl shadow-lg bg-white "
+              className="flex flex-col justify-center items-center p-5 min-h-[450px] max-h-[500px] md:max-w-sm lg:min-w-[400px] min-w-[320px] w-[80%] rounded-3xl shadow-lg bg-white "
               key={cartIndex}
             >
               <div className="self-stretch flex justify-between ">
@@ -120,8 +120,8 @@ function Headphones({
                   className="object-contain h-[90%] rounded-lg  shadow-xl"
                 />
               </motion.div>
-              <div className="self-stretch flex justify-between items-center mt-10">
-                <h3 className="font-bold md:text-lg sm:text-md text-sm uppercase">{name}</h3>
+              <div className="lg:self-stretch lg:flex lg:flex-row lg:justify-between flex flex-col justify-center items-center mt-10">
+                <h3 className="font-bold md:text-xl text-lg  ">{name}</h3>
                 <span>
                   <p className="md:text-xl sm:text-lg text-md text-orange-500 font-extrabold font-mono">
                     {cost}

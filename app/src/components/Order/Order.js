@@ -11,8 +11,8 @@ function Order({ data, total }) {
     <article className=" flex flex-col justify-center items-center mt-10 mb-10">
       <div className="max-w-7xl w-full">
         <h2 className="text-2xl font-bold tracking-wider">Оформление заказа</h2>
-        <div className="flex gap-3">
-          <section className="w-[40%] bg-white shadow-lg rounded-3xl py-6 px-7 mt-5 ">
+        <div className="lg:flex lg:justify-between gap-3">
+          <section className="lg:w-[45%] bg-white shadow-lg rounded-3xl py-6 px-7 mt-5 ">
             <h3 className="flex justify-between text-xl font-bold">
               Доставка курьером
               <p className="text-lg font-mono font-thin">40 000 UZS</p>
@@ -61,15 +61,15 @@ function Order({ data, total }) {
               </form>
             </div>
           </section>
-          <section className="w-[45%] mt-5">
+          <section className="lg:w-[55%] mt-5">
             <div className="bg-white shadow-xl rounded-3xl py-6 px-7">
               <h3 className="text-xl font-bold tracking-wider">Ваш заказ</h3>
               <div className="w-full mt-3">
-                <div className="overflow-y-scroll max-h-[200px] h-[100%] px-5 mb-5">
+                <div className="lg:overflow-y-scroll lg:max-h-[200px] h-[100%] lg:px-5 mb-5">
                   {data.map((item, i) => {
                     return (
                       <div
-                        className="flex justify-between items-center text-lg font-mono mb-3"
+                        className="flex justify-between items-center text-lg font-mono mb-3 "
                         key={i}
                       >
                         <div className="flex items-center gap-2">
@@ -78,11 +78,28 @@ function Order({ data, total }) {
                             alt={item.name}
                             className="min-h-[9] max-h-16 w-12 object-contain"
                           />
-                          {item.name}
+                          <div className="xs:flex hidden gap-5 ">
+                           <h3 className="capitalize text-gray-700">
                           <span className="font-bold">{item.amount}x</span>{" "}
+                            {item.name}
+                            </h3> 
+                          </div>
+                          
+                            
                         </div>
+                        <p className="xs:block hidden font-mono  text-orange-600">{item.cost}</p>
 
-                        <p className="font-mono">{item.cost}</p>
+                        <div className="flex flex-col items-start w-full ml-5 xs:hidden   ">
+                           <h3 className="capitalize text-gray-700 flex justify-between w-full mb-2">
+                      
+                            {item.name}
+                          <span className="font-bold lowercase flex gap-1">x{item.amount}</span>{" "}
+                            </h3> 
+                         <p className="font-mono w-full text-orange-600">{item.cost}</p>
+
+                          </div>
+                        {/* <p className="font-mono ">{item.cost}</p> */}
+
                       </div>
                     );
                   })}

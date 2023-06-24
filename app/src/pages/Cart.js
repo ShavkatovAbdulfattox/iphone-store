@@ -108,7 +108,7 @@ function Cart() {
                 </h2>
                 <div className="lg:flex justify-between items-start">
                   <div className="lg:max-w-2xl lg:w-1/2 ">
-                    <div className="lg:min-h-[400px] lg:max-h-[550px] lg:overflow-y-auto grid md:grid-cols-2 grid-cols-1 gap-5 md:px-5">
+                    <div className="lg:flex lg:flex-col lg:min-h-[400px] lg:max-h-[550px]  lg:overflow-y-auto grid md:grid-cols-2 grid-cols-1 gap-5 md:px-5">
                       {boughtProduct.map((item, i) => {
                         return (
                           <article
